@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>AirCargo Expert System</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<h1>✈️ AirCargo Expert System</h1>
+
+<div class="container">
+
+<div class="box">
+
+<h2>Add Flight</h2>
+
+<form method="POST">
+<input type="text" name="flight_no" placeholder="Flight Number" required>
+<input type="text" name="destination" placeholder="Destination" required>
+<input type="number" name="capacity" placeholder="Capacity" required>
+
+<button name="add_flight">Add Flight</button>
+</form>
+
+<h3>Flights</h3>
+
+<ul>
+{% for f in flights %}
+<li>{{f.flight_no}} → {{f.destination}} ({{f.capacity}}kg)</li>
+{% endfor %}
+</ul>
+
+</div>
+
+
+<div class="box">
+
+<h2>Add Cargo</h2>
+
+<form method="POST">
+<input type="text" name="cargo_id" placeholder="Cargo ID" required>
+<input type="text" name="cargo_destination" placeholder="Destination" required>
+<input type="number" name="weight" placeholder="Weight" required>
+
+<select name="priority">
+<option>High</option>
+<option>Low</option>
+</select>
+
+<button name="add_cargo">Add Cargo</button>
+</form>
+
+<h3>Cargo</h3>
+
+<ul>
+{% for c in cargos %}
+<li>{{c.cargo_id}} → {{c.destination}} ({{c.weight}}kg {{c.priority}})</li>
+{% endfor %}
+</ul>
+
+</div>
+
+</div>
+
+
+<div class="run">
+
+<form method="POST">
+<button name="run_system" class="runbtn">Run Expert System</button>
+</form>
+
+</div>
+
+
+<div class="results">
+
+<h2>Results</h2>
+
+{% for m in messages %}
+<p>{{m}}</p>
+{% endfor %}
+
+<h3>Assignments</h3>
+
+<ul>
+{% for a in assignments %}
+<li>{{a.cargo}} → {{a.flight}}</li>
+{% endfor %}
+</ul>
+
+</div>
+
+</body>
+
+</html>
