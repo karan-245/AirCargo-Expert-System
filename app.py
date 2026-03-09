@@ -2,10 +2,6 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-# ==============================
-# EXPERT SYSTEM CLASSES
-# ==============================
-
 class Flight:
     def __init__(self, flight_no, destination, capacity):
         self.flight_no = flight_no
@@ -79,10 +75,6 @@ class AirCargoExpert:
             if not cargo.assigned:
                 self.messages.append(f"Cargo {cargo.cargo_id} could not be assigned")
 
-
-# ==============================
-# SAMPLE DATA
-# ==============================
 
 flights = []
 cargos = []
